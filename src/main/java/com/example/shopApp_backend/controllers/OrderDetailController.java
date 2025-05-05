@@ -67,7 +67,7 @@ public class OrderDetailController {
     }
 
 
-    //lấy ra danh sách các order_details của 1 order nào đó
+
     @GetMapping("/order/{orderId}")
     public ResponseEntity<ResponseObject> getOrderDetails(
             @Valid @PathVariable("orderId") Long orderId
