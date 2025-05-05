@@ -31,7 +31,6 @@ public class UserController {
     private final LocalizationUtils localizationUtils;
 
     @PostMapping("/register")
-    //can we register an "admin" user ?
     public ResponseEntity<RegisterResponse> createUser(
             @Valid @RequestBody UserDTO userDTO,
             BindingResult result
@@ -70,7 +69,6 @@ public class UserController {
             @Valid @RequestBody UserLoginDTO userLoginDTO,
             HttpServletRequest request
     ) {
-        // Kiểm tra thông tin đăng nhập và sinh token
         try {
             String token = userService.login(
                     userLoginDTO.getPhoneNumber(),
@@ -94,7 +92,6 @@ public class UserController {
                     .status(HttpStatus.OK)
                     .build());
 
-            // Trả về token trong response
 //            return ResponseEntity.ok(LoginResponse.builder()
 //                            .message(localizationUtils.getLocalizedMessage(MessageKeys.LOGIN_SUCCESSFULLY))
 //                            .token(token)
@@ -112,7 +109,7 @@ public class UserController {
     public ResponseEntity<ResponseObject> getUserDetails(
             @RequestHeader("Authorization") String authorizationHeader
     ) throws Exception {
-        String extractedToken = authorizationHeader.substring(7); // Loại bỏ "Bearer " từ chuỗi token
+        String extractedToken = authorizationHeader.substring(7); 
         User user = userService.getUserDetailsFromToken(extractedToken);
         return ResponseEntity.ok().body(
                 ResponseObject.builder()
