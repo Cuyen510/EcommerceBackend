@@ -96,7 +96,6 @@ public class OrderController {
     }
 
     @PutMapping("/{id}")
-    //công việc của admin
     public ResponseEntity<ResponseObject> updateOrder(
             @Valid @PathVariable long id,
             @Valid @RequestBody OrderDTO orderDTO) throws Exception {
